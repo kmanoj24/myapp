@@ -2,10 +2,12 @@
 
 This is a sample Rails weather forecast app using WeatherAPI.
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 bundle install
+
 rails db:create db:migrate
+
 rails s
 
 # Weather Forecast App (Ruby on Rails)
