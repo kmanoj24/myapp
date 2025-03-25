@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'auth', media: 'all' %>
+  <%= stylesheet_link_tag 'custom', media: 'all' %> <!-- Add this line -->
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

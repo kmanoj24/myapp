@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Sign Up</h2>
+
+  <%= form_with model: @user, url: signup_path, local: true do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :phone %>
+      <%= f.telephone_field :phone, pattern: "[0-9]{10}", title: "Enter a valid 10-digit phone number" %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div>
+      <%= f.submit "Sign Up" %>
+    </div>
+  <% end %>
+
+  <%= link_to "Already have an account? Login", login_path %>
+</div>

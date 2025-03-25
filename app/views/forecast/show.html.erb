@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Current Weather</h2>
+
+  <% if @forecast %>
+    <% if @forecast[:cached] %>
+      <div class="flash-message flash-success">Result pulled from cache </div>
+    <% else %>
+      <div class="flash-message flash-info">Fresh data pulled from WeatherAPI </div>
+    <% end %>
+
+    <p><strong>Location:</strong> <%= @forecast[:location] %></p>
+    <p><strong>Temperature:</strong> <%= @forecast[:current_temp] %>°C</p>
+    <p><strong>Condition:</strong> <%= @forecast[:condition] %></p>
+
+    <% if @forecast[:icon] %>
+      <img src="https:<%= @forecast[:icon] %>" alt="<%= @forecast[:condition] %>">
+    <% end %>
+
+    <p><em>Last updated: <%= @forecast[:updated_at] %></em></p>
+
+  <% else %>
+    <div class="flash-message flash-error">Invalid location or forecast not available.</div>
+  <% end %>
+
+  <br>
+  <%= link_to "Back", root_path, class: "logout-btn" %>
+</div>

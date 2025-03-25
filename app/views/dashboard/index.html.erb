@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'custom', media: 'all' %>
+</head>
+<body>
+  <header>
+    <h1>Customer Dashboard</h1>
+    <nav>
+      <span>Welcome, <%= @user&.name&.capitalize || "Guest" %>!</span>
+      <%= button_to "Logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-btn" %>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Customer List</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Store ID</th>
+          <th>Address ID</th>
+          <th>Active</th>
+          <th>Created At</th>
+          <th>Last Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @customers.any? %>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.customer_id %></td>
+              <td><%= customer.first_name %></td>
+              <td><%= customer.last_name %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.store_id %></td>
+              <td><%= customer.address_id %></td>
+              <td><%= customer.active ? "Yes" : "No" %></td>
+              <td><%= customer.create_date.strftime("%Y-%m-%d") %></td>
+              <td><%= customer.last_update.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="9" style="text-align: center;">No customers found.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
