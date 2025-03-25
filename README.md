@@ -20,7 +20,7 @@ Open your browser and visit:
 http://localhost:3000
 Enter a valid location name (e.g., London, Paris) or ZIP code (e.g., 10001) in the search field.
 
-Click Submit to see the current weather forecast.
+Click Submit to see the weather forecast.
 
 If the same location was searched in the last 30 minutes:
 
