@@ -9,46 +9,28 @@ rails db:create db:migrate
 rails s
 
 # Weather Forecast App (Ruby on Rails)
+How to Use
+Start your Rails server:
 
-This is a simple Ruby on Rails application that allows users to input an address (or ZIP code) and retrieve weather forecast data, including the current temperature, high/low, and cache functionality.
+rails s
+Open your browser and visit:
 
----
+http://localhost:3000
+Enter a valid location name (e.g., London, Paris) or ZIP code (e.g., 10001) in the search field.
 
-## 🚀 Features
+Click Submit to see the current weather forecast.
 
-- Accept address input from user
-- Fetch weather data using WeatherAPI (current temp, high/low, etc.)
-- Caches results for 30 minutes per ZIP code
-- Displays cache status to user
-- Clean MVC structure with service objects
-- Unit tested with RSpec
+If the same location was searched in the last 30 minutes:
 
+The app pulls the result from cache
 
-**Weather API Info
-**
-The app uses http://api.weatherapi.com/v1/current.json for current weather data.
+A message is shown: ✅ Result pulled from cache
 
-You can enter either:
+Example Input:
+London
 
-A city name (e.g., London, Paris)
+10001
 
-A ZIP code (e.g., 10001)
+New York
 
-The request is made through Net::HTTP in the ForecastService.
-
-**Caching Details
-**
-Rails built-in caching (Rails.cache) is used to avoid repeated API calls.
-
-Cache key format: "weather_#{location.parameterize}"
-
-Each result is cached for 30 minutes.
-
-On repeated requests:
-
-If data exists in cache → it does not hit the API
-
-The response will include: cached: true
-
-
-
+🔁 Cache will auto-expire after 30 minutes and fetch fresh data again.
