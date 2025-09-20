@@ -1,22 +1,130 @@
+<style>
+  /* Flash screen effect */
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #007BFF, #6C63FF, #FF5733, #FFC300);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    color: #fff;
+  }
+
+  .container {
+    width: 50%; /* Occupy half the width of the page */
+    height: auto; /* Adjust height based on content */
+    padding: 40px; /* Increase padding for a spacious layout */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #007BFF, #6C63FF, #FF5733, #FFC300); /* Apply gradient */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite; /* Apply animation */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+  }
+
+  .flash-message {
+    background-color: #d4edda; /* Light green background for success */
+    color: #155724; /* Dark green text for success */
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .flash-message.alert {
+    background-color: #f8d7da; /* Light red background for errors */
+    color: #721c24; /* Dark red text for errors */
+    border: 1px solid #f5c6cb;
+  }
+
+  h2 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin-bottom: 30px; /* Add spacing below the heading */
+  }
+
+  .form-group {
+    margin-bottom: 20px; /* Increase spacing between form fields */
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add spacing below labels */
+    font-size: 16px; /* Increase label font size */
+  }
+
+  input {
+    width: 100%;
+    padding: 15px; /* Increase padding for larger input fields */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Increase font size for better readability */
+  }
+
+  .submit-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 20px; /* Increase padding for a larger button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px; /* Increase font size for emphasis */
+    font-weight: bold;
+  }
+
+  .signup-link {
+    color: #007BFF;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 20px; /* Add spacing above the link */
+    font-size: 16px; /* Increase font size for better visibility */
+  }
+</style>
+
 <div class="container">
+  <% flash.each do |key, message| %>
+    <div class="flash-message <%= key %>">
+      <%= message %>
+    </div>
+  <% end %>
 
   <h2>Login</h2>
 
   <%= form_with url: login_path, local: true do |f| %>
-    <div>
-      <%= f.label :email %>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
       <%= f.email_field :email, name: "session[email]" %>
     </div>
 
-    <div>
-      <%= f.label :password %>
+    <div class="form-group">
+      <%= f.label :password, "Password" %>
       <%= f.password_field :password, name: "session[password]" %>
     </div>
 
     <div>
-      <%= f.submit "Login" %>
+      <%= f.submit "Login", class: "submit-btn" %>
     </div>
   <% end %>
 
-  <%= link_to "Don't have an account? Sign up", signup_path %>
+  <%= link_to "Don't have an account? Sign up", signup_path, class: "signup-link" %>
 </div>

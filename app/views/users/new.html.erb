@@ -1,36 +1,164 @@
+<style>
+  /* Flash screen effect */
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #007BFF, #6C63FF, #FF5733, #FFC300);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    color: #fff;
+  }
+
+  .container {
+    width: 40%; /* Reduce width for a compact layout */
+    padding: 30px; /* Adjust padding for better spacing */
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Increase border radius for a rounded look */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
+    background-color: rgba(255, 255, 255, 0.95); /* Slight transparency */
+    color: #333;
+  }
+
+  h2 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin-bottom: 20px; /* Reduce spacing below the heading */
+    font-size: 28px; /* Increase font size for emphasis */
+    font-weight: bold; /* Make the heading bold */
+  }
+
+  .form-group {
+    margin-bottom: 20px; /* Increase spacing between form fields */
+    display: flex;
+    flex-direction: column; /* Align labels and inputs vertically */
+    align-items: flex-start; /* Align labels and inputs to the left */
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 8px; /* Reduce spacing below labels */
+    font-size: 16px; /* Increase label font size */
+    color: #555; /* Add a subtle color for labels */
+  }
+
+  input {
+    width: 100%; /* Make inputs occupy the full width of the container */
+    padding: 15px; /* Increase padding for larger input fields */
+    border: 2px solid #007BFF; /* Add border color */
+    border-radius: 8px; /* Rounded corners for input fields */
+    font-size: 16px; /* Increase font size for better readability */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+  }
+
+  input:focus {
+    border-color: #6C63FF; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+
+  .submit-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 20px; /* Adjust padding for a compact button */
+    border: none;
+    border-radius: 8px; /* Rounded corners for the button */
+    cursor: pointer;
+    width: 100%; /* Match width with text boxes */
+    font-size: 18px; /* Increase font size for emphasis */
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add stronger shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 20px; /* Add spacing above the button */
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  .signup-link {
+    color: #007BFF;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 15px; /* Reduce spacing above the link */
+    font-size: 16px; /* Adjust font size for better visibility */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .signup-link:hover {
+    color: #0056b3; /* Darker shade on hover */
+  }
+
+  .error-messages {
+    color: red;
+    margin-top: 20px;
+    text-align: center; /* Center align error messages */
+  }
+
+  .error-messages h4 {
+    margin-bottom: 10px;
+  }
+
+  .error-messages ul {
+    padding-left: 20px;
+  }
+</style>
+
 <div class="container">
   <h2>Sign Up</h2>
 
   <%= form_with model: @user, url: signup_path, local: true do |f| %>
-    <div>
-      <%= f.label :name %>
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
       <%= f.text_field :name %>
     </div>
 
-    <div>
-      <%= f.label :email %>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
       <%= f.email_field :email %>
     </div>
 
-    <div>
-      <%= f.label :phone %>
+    <div class="form-group">
+      <%= f.label :phone, "Phone" %>
       <%= f.telephone_field :phone, pattern: "[0-9]{10}", title: "Enter a valid 10-digit phone number" %>
     </div>
 
-    <div>
-      <%= f.label :password %>
+    <div class="form-group">
+      <%= f.label :password, "Password" %>
       <%= f.password_field :password %>
     </div>
 
-    <div>
-      <%= f.label :password_confirmation %>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
     </div>
 
     <div>
-      <%= f.submit "Sign Up" %>
+      <%= f.submit "Sign Up", class: "submit-btn" %>
     </div>
+
+    <% if @user.errors.any? %>
+      <div class="error-messages">
+        <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
 
-  <%= link_to "Already have an account? Login", login_path %>
+  <%= link_to "Already have an account? Login", login_path, class: "signup-link" %>
 </div>

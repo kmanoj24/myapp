@@ -7,6 +7,127 @@
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= stylesheet_link_tag 'custom', media: 'all' %>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #007BFF, #6C63FF);
+      background-attachment: fixed; /* Ensure background stays fixed */
+      background-size: cover; /* Cover the entire viewport */
+      color: #333;
+    }
+
+    header {
+      background-color: #0056b3; /* Darker shade of blue for a modern look */
+      color: white;
+      padding: 20px 40px; /* Add horizontal padding for better spacing */
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
+      border-bottom: 4px solid #003d80; /* Add a border for separation */
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px; /* Increase font size for emphasis */
+      font-weight: bold; /* Make the heading bold */
+      letter-spacing: 1px; /* Add spacing between letters */
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav span {
+      font-size: 16px;
+      margin-right: 20px;
+      font-weight: 500; /* Slightly bold text for better readability */
+    }
+
+    .logout-btn {
+      background-color: #FF5733;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease; /* Smooth hover effect */
+    }
+
+    .logout-btn:hover {
+      background-color: #C70039; /* Darker shade on hover */
+    }
+
+    .container {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 1200px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #007BFF;
+      color: white;
+      font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      margin: 0 5px;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #007BFF;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+    }
+
+    .pagination a:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .pagination .current {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -56,6 +177,10 @@
         <% end %>
       </tbody>
     </table>
+
+    <div class="pagination">
+      <%= paginate @customers %>
+    </div>
   </div>
 </body>
 </html>

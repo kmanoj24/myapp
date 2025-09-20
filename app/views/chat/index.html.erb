@@ -1,0 +1,58 @@
+<div data-controller="chat" style="display: flex; flex-direction: row; gap: 20px; font-family: sans-serif; max-width: 1200px; margin: 0 auto;">
+
+  <!-- 🎭 Character Setup -->
+  <div style="flex: 1; min-width: 250px; padding: 15px; border: 1px solid #ccc; border-radius: 10px; background-color: #fdfdfd;">
+    <h2>🎭 Character</h2>
+    <label>👤 Name:</label><br>
+    <input type="text" data-chat-target="characterName" value="Pallavi" style="width: 100%;"><br><br>
+
+    <label>🧠 Description / Role:</label><br>
+    <input type="text" data-chat-target="characterDescription" value="A dramatic Telugu heroine" style="width: 100%;"><br><br>
+
+    <label>🎨 Appearance:</label><br>
+    <input type="text" data-chat-target="characterAppearance" value="Long hair, saree, fair skin" style="width: 100%;">
+  </div>
+
+  <!-- 💬 Chat Section: replies scrollable, prompt fixed at bottom -->
+    <div style="flex: 2; min-width: 400px; display: flex; flex-direction: column; height: 600px; border: 1px solid #ccc; border-radius: 10px; overflow: hidden;">
+
+    <!-- 🧠 Scrollable Reply Box -->
+    <div id="chat-box" data-chat-target="chatBox"
+        style="flex: 1; padding: 15px; background-color: #eef;
+                overflow-y: auto; display: flex; flex-direction: column-reverse;">
+        <!-- Messages appear here -->
+    </div>
+
+    <!-- 💬 Chat Form fixed at bottom -->
+    <form data-action="submit->chat#submit"
+            style="padding: 15px; background: #fff; border-top: 1px solid #ccc;">
+        <label>🗨️ Your Message in Telugu:</label><br>
+        <textarea data-chat-target="prompt" rows="3" style="width: 100%;" placeholder="Type a message... (Press Enter or click Send)"></textarea><br><br>
+
+        <label><input type="checkbox" data-chat-target="generateImage"> 🖼️ Generate Image</label>
+        <label style="margin-left: 10px;"><input type="checkbox" data-chat-target="generateVoice" checked> 🔊 Voice Output</label><br><br>
+
+        <button type="submit">💬 Send</button>
+    </form>
+    </div>
+
+
+    <div style="flex: 1; min-width: 250px; padding: 15px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+    <h3>🖼️ Generated Images:</h3>
+    <div id="image-gallery" data-chat-target="imageGallery"
+         style="
+           display: flex;
+           flex-direction: column-reverse;
+           gap: 10px;
+           max-height: 500px;
+           min-height: 200px;
+           overflow-y: auto;
+           background: #fff;
+           border: 1px solid #eee;
+           padding: 10px;
+           border-radius: 6px;
+         ">
+      <!-- Images get inserted here -->
+    </div>
+  </div>
+</div>
