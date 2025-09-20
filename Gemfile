@@ -11,6 +11,10 @@ gem "sprockets-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 gem 'jwt'
+gem 'stripe'
+# Gemfile
+gem 'bcrypt', '~> 3.1.7'
+gem 'newrelic_rpm'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -20,6 +24,7 @@ gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+gem 'pundit'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -27,7 +32,20 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem 'byebug'
-gem 'bcrypt', '~> 3.1.7'
+gem 'httparty'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'omniauth-google-oauth2'
+gem 'google-apis-gmail_v1'
+gem 'googleauth'
+gem 'redis-rails'
+gem 'redis', '~> 4.0.1'
+gem 'redis-store'
+gem 'redis-actionpack'
+gem 'redis-namespace'
+gem 'redis-objects'
+gem 'sidekiq'
+gem 'kaminari'
+gem 'sidekiq-cron'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -36,16 +54,12 @@ gem 'bcrypt', '~> 3.1.7'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
-# For .env support
-gem 'dotenv-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

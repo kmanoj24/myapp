@@ -1,19 +1,16 @@
 class ActorsController < ApplicationController
   before_action :set_actor, only: [:show, :update, :destroy]
 
-  # GET /actors
   def index
     byebug
     @actors = Actor.all
     render json: @actors
   end
 
-  # GET /actors/:id
   def show
     render json: @actor
   end
 
-  # POST /actors
   def create
     @actor = Actor.new(actor_params)
     if @actor.save
@@ -23,7 +20,6 @@ class ActorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /actors/:id
   def update
     if @actor.update(actor_params)
       render json: @actor
@@ -32,7 +28,6 @@ class ActorsController < ApplicationController
     end
   end
 
-  # DELETE /actors/:id
   def destroy
     @actor.destroy
     head :no_content
